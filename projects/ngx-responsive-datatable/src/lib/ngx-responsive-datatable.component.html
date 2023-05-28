@@ -1,0 +1,104 @@
+<section class="responsive-table">
+  <div class="filter-section">
+    <div class="count-section">
+      <span>Show </span>
+      <select [formControl]="countBox">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <span> of {{ this.data?.rows.length }}</span>
+    </div>
+    <div class="input-section">
+      <span>Search: </span>
+      <input type="text" [formControl]="inputBox" />
+    </div>
+  </div>
+  <div class="pagination-section">
+    <div class="pagination-section__page" (click)="goToFirst()"><<</div>
+    <div
+      class="pagination-section__page"
+      *ngFor="let page of paginationArray; let i = index"
+      (click)="goToPage(i)"
+    >
+      {{ i + 1 }}
+    </div>
+    <div class="pagination-section__page" (click)="goToLast()">>></div>
+  </div>
+  <div class="responsive-table__grid" [ngStyle]="getStyles()">
+    <div
+      *ngFor="let column of data?.titles | keyvalue : returnZero; let i = index"
+      class="responsive-table__grid__row__item title column-{{ i + 1 }}"
+      (click)="orderBySelector(column.value)"
+      [innerHTML]="column.value"
+      ngNonLazy="true"
+    ></div>
+    <div
+      [ngStyle]="getGridTemplate()"
+      class="responsive-table__grid__row description"
+      *ngFor="
+        let row of data?.rows
+          | countBox : { limit, offset }
+          | searchBox : inputBox.value
+          | keyvalue : returnZero;
+        let r = index
+      "
+    >
+      <div
+        class="wraper_icon"
+        *ngIf="columnRes.length"
+        [class.unfold]="data?.rows[r].unfold"
+        [ngStyle]="setWrapperIconPosition()"
+      >
+        <div
+          class="wraper_icon_container"
+          (click)="data?.rows[r].unfold = !data?.rows[r].unfold"
+        >
+          <span
+            class="wraper_icon_container_sign"
+            *ngIf="!data?.rows[r].unfold; else unfoldSign"
+          >
+            +
+          </span>
+          <ng-template #unfoldSign>
+            <span class="wraper_icon_container_sign"> - </span>
+          </ng-template>
+        </div>
+      </div>
+      <div
+        *ngFor="
+          let column of data?.titles | keyvalue : returnZero;
+          let i = index
+        "
+        class="responsive-table__grid__row__item column-{{ i + 1 }}"
+        [innerHTML]="getValue(row.value, column.key)"
+      ></div>
+      <div
+        class="responsive-table__grid__row__wrapper"
+        *ngIf="columnRes.length && data?.rows[r].unfold"
+        [ngStyle]="getPanelWidth()"
+      >
+        <div
+          class="responsive-table__grid__row__wrapper_row"
+          *ngFor="let i of columnRes | keyvalue : returnZero"
+        >
+          <h4>{{ i.value }}:</h4>
+          <p [innerHTML]="getPanelValue(row.value, i.key)"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination-section">
+    <div class="pagination-section__page" (click)="goToFirst()"><<</div>
+    <div
+      class="pagination-section__page"
+      *ngFor="let page of paginationArray; let i = index"
+      (click)="goToPage(i)"
+    >
+      {{ i + 1 }}
+    </div>
+    <div class="pagination-section__page" (click)="goToLast()">>></div>
+  </div>
+</section>

@@ -1,0 +1,143 @@
+@mixin flexbox($jc, $ai, $fd) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+.responsive-table {
+  background-color: #ffffff;
+  width: 100%;
+  font-family: sans-serif;
+  input,
+  select {
+    border-style: none;
+    border: 1px solid #777777;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    color: #777777;
+  }
+  .filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    color: #777777;
+    @media (min-width: 420px) {
+      flex-direction: row;
+    }
+  }
+  .responsive-table__grid {
+    padding: 0.5rem 0;
+    &__row {
+      border-radius: 0.5rem;
+      color: #80858c;
+      padding: 0.3rem;
+      &__item {
+        place-self: center;
+        text-align: center;
+        width: auto;
+        max-width: 150px;
+        &.title {
+          font-size: 16px;
+          font-weight: 700;
+        }
+      }
+      &.description {
+        position: relative;
+        .responsive-table__grid__row__item {
+          ::ng-deep img {
+            width: 60px;
+          }
+          ::ng-deep p {
+            text-transform: capitalize;
+            max-width: 150px;
+          }
+        }
+
+        .wraper_icon {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1rem;
+          &_container {
+            @include flexbox(center, center, column);
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: #049b41;
+            cursor: default;
+            &_sign {
+              color: #ffffff;
+              font-size: 20px;
+              line-height: 20px;
+            }
+          }
+          &.unfold {
+            top: 20px;
+            transform: translateY(0%);
+            .wraper_icon_container {
+              background-color: #04579b;
+            }
+          }
+        }
+
+        .responsive-table__grid__row__wrapper {
+          @include flexbox(center, center, column);
+          width: 95%;
+          max-width: 20rem;
+          padding-top: 0.5rem;
+          margin-bottom: 1rem;
+          gap: 0.5rem;
+          min-height: 100%;
+          &_row {
+            @include flexbox(space-between, center, row);
+            width: 100%;
+            height: fit-content;
+            ::ng-deep img {
+              width: 60px;
+            }
+            ::ng-deep p {
+              text-transform: capitalize;
+              text-align: end;
+              width: auto;
+              max-width: 150px;
+            }
+            * {
+              margin: 0;
+              * {
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+
+      &:nth-child(even) {
+        background-color: #f1f1f1;
+      }
+    }
+  }
+
+  .pagination-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0;
+    &__page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+      width: 30px;
+      border: 1px solid #777777;
+      color: #777777;
+      border-radius: 0.3rem;
+      cursor: default;
+    }
+  }
+}
