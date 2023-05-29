@@ -39,9 +39,9 @@
       class="responsive-table__grid__row description"
       *ngFor="
         let row of data?.rows
+          | keyvalue : returnZero
           | countBox : { limit, offset }
-          | searchBox : inputBox.value
-          | keyvalue : returnZero;
+          | searchBox : inputBox.value;
         let r = index
       "
     >

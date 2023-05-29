@@ -70,6 +70,7 @@ export class NgxResponsiveDatatableComponent
     this.countBox = new FormControl(10);
     this.countBox.valueChanges.subscribe((value) => {
       this.limit = value;
+      this.offset = 0;
       this.inputBox.reset();
       this.setPagination();
       this.ref.markForCheck();
