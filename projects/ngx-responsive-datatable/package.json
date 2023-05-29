@@ -1,6 +1,6 @@
 {
   "name": "ngx-responsive-datatable",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "peerDependencies": {
     "@angular/common": "^16.0.0",
     "@angular/core": "^16.0.0"
@@ -8,6 +8,29 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Ivancho175/ngx-responsive-datatable-app"
+  },
+  "keywords": [
+    "angular",
+    "responsive-datatable",
+    "ngx-responsive-datatable",
+    "paginator",
+    "pagination",
+    "angular8",
+    "angular9",
+    "angular10",
+    "angular11",
+    "angular12",
+    "angular13",
+    "angular14",
+    "angular15",
+    "angular16",
+    "ngx-datatable",
+    "datatable"
+  ],
+  "author": {
+    "name": "Ivan Dario Velez",
+    "email": "ivancho175@gmail.com",
+    "url": "https://ivancho175.github.io/My-dev-portfolio/"
   },
   "dependencies": {
     "tslib": "^2.3.0"
