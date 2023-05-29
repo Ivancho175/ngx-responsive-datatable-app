@@ -121,3 +121,7 @@ interface User = {
     email: string;
 }
 ```
+
+### Tutorial
+
+[![TUTORIAL ngx-responsive-datatable](https://i.ibb.co/F6BSp3T/image.png)](https://www.youtube.com/watch?v=RfDIhyvewfM "Tutorial NGX-RESPONSIVE-DATATABLE")
